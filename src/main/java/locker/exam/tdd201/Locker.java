@@ -15,7 +15,7 @@ public class Locker {
         if (bagRepository.size() >= size) {
             throw new LockerIsFullException();
         }
-        Ticket ticket = new Ticket(TypeEnum.SMALL);
+        Ticket ticket = new Ticket(this.type);
         bagRepository.put(ticket, bag);
         return ticket;
     }
