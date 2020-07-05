@@ -29,4 +29,10 @@ public class LockerTest {
         Bag bag = smallLocker.pickUp(ticket);
         assertEquals(bagExpected, bag);
     }
+
+    @Test
+    void should_throw_TicketInvalidException_when_pick_up_given_a_not_exist_small_ticket_and_a_small_locker() {
+        Locker locker = new Locker(1, "S");
+        assertThrows(TicketInvalidException.class, () -> locker.pickUp(new Ticket("S")));
+    }
 }

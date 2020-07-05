@@ -21,6 +21,9 @@ public class Locker {
     }
 
     public Bag pickUp(Ticket ticket) {
+        if (!bagRepository.containsKey(ticket)) {
+            throw new TicketInvalidException();
+        }
         return bagRepository.get(ticket);
     }
 }
