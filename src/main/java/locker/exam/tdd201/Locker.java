@@ -41,4 +41,8 @@ public class Locker {
     public boolean hasTicket(Ticket ticket) {
         return bagRepository.containsKey(ticket);
     }
+
+    public double emptyRatio() {
+        return (double)(size - bagRepository.size())/(double)size;
+    }
 }
