@@ -48,7 +48,7 @@ public class LockerRobotManagerTest {
     }
 
     @Test
-    void should_throw_noAvailableCapacityException_when_store_given_a_full_small_locker() {
+    void should_throw_noAvailableCapacityException_when_store_given_a_full_small_locker_and_a_small_bag() {
         Locker locker = new Locker(1, TypeEnum.SMALL);
         locker.store(new Bag(TypeEnum.SMALL));
         PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
@@ -57,5 +57,17 @@ public class LockerRobotManagerTest {
                 Collections.singletonList(locker));
 
         assertThrows(NoAvailableCapacityException.class, ()->lockerRobotManager.store(new Bag(TypeEnum.SMALL)) );
+    }
+
+    @Test
+    void should_throw_noAvailableCapacityException_when_store_given_a_full_primaryLockerRobot_and_a_medium_Bag() {
+        Locker locker = new Locker(1, TypeEnum.SMALL);
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
+        primaryLockerRobot.store(new Bag(TypeEnum.SMALL));
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
+        LockerRobotManager lockerRobotManager = new LockerRobotManager(Collections.singletonList(primaryLockerRobot),Collections.singletonList(superLockerRobot),
+                Collections.singletonList(locker));
+
+        assertThrows(NoAvailableCapacityException.class, ()->lockerRobotManager.store(new Bag(TypeEnum.MEDIUM)) );
     }
 }
