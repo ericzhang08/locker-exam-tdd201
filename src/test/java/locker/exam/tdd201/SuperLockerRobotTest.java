@@ -37,4 +37,16 @@ public class SuperLockerRobotTest {
         Ticket ticket = superLockerRobot.store(bagExpected);
         assertEquals(bagExpected, firstLocker.pickUp(ticket));
     }
+
+    @Test
+    void should_throw_NoAvailableCapacityException_when_store_given_two_large_type_locker_and_both_are_full() {
+        Locker firstLocker = new Locker(1, TypeEnum.LARGE);
+        Locker secondLocker = new Locker(1, TypeEnum.LARGE);
+        firstLocker.store(new Bag());
+        secondLocker.store(new Bag());
+
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(firstLocker,
+                secondLocker));
+        assertThrows(NoAvailableCapacityException.class, () -> superLockerRobot.store(new Bag()));
+    }
 }
