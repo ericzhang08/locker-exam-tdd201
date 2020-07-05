@@ -8,10 +8,6 @@ public class Bag {
         this.type = type;
     }
 
-    public TypeEnum getType() {
-        return type;
-    }
-
     public boolean isType(TypeEnum type) {
         return this.type.equals(type);
     }
