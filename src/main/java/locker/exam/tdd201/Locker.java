@@ -33,4 +33,8 @@ public class Locker {
     public boolean isType(TypeEnum medium) {
         return this.type.equals(medium);
     }
+
+    public boolean hasAvailableCapacity() {
+        return bagRepository.size() < size;
+    }
 }

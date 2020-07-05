@@ -90,7 +90,7 @@ given primaryLockerRobot管理非中型Locker when 配置 then 报 不支持该�
 
 given一个 中型包 and 一个primaryLockerRobot管理两个未满的中型Locker  when 存包 then 成功存包到第一个locker，并返回中型包ticket。
 
-given一个 中型包 and 一个primaryLockerRobot管理两个中型Locker第一个已满第二个未满  when 存包 then 成功存包到第二个locker， 并返回中型包ticket。
+[given一个 中型包 and 一个primaryLockerRobot管理两个中型Locker第一个已满第二个未满  when 存包 then 成功存包到第二个locker， 并返回中型包ticket。]()
 
 given一个 中型包 and 一个primaryLockerRobot管理两个中型locker都已满 when 存包 then 报空间已满错误。
 

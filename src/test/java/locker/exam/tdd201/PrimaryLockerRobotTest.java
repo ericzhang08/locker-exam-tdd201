@@ -25,8 +25,19 @@ public class PrimaryLockerRobotTest {
         Bag bagExpected = new Bag();
         Ticket ticket = primaryLockerRobot.store(bagExpected);
         assertEquals(bagExpected, firstLocker.pickUp(ticket));
+    }
 
+    @Test
+    void should_return_ticket_and_save_bag_in_second_locker_when_store_given_two_medium_type_locker_and_first_is_full() {
+        Locker firstLocker = new Locker(1, TypeEnum.MEDIUM);
+        Locker secondLocker = new Locker(1, TypeEnum.MEDIUM);
+        firstLocker.store(new Bag());
 
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Arrays.asList(firstLocker,
+                secondLocker));
 
+        Bag bagExpected = new Bag();
+        Ticket ticket = primaryLockerRobot.store(bagExpected);
+        assertEquals(bagExpected, secondLocker.pickUp(ticket));
     }
 }
