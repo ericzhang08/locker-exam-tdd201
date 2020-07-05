@@ -143,5 +143,16 @@ public class LockerRobotManagerTest {
         assertThrows(TicketInvalidException.class,() -> lockerRobotManager.pickUp(new Ticket(TypeEnum.SMALL)));
     }
 
+    @Test
+    void should_throw_InvalidTicketException_when_pick_up_given_an_invalid_medium_ticket() {
+        Locker locker = new Locker(1, TypeEnum.SMALL);
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
+        LockerRobotManager lockerRobotManager = new LockerRobotManager(Collections.singletonList(primaryLockerRobot),Collections.singletonList(superLockerRobot),
+                Collections.singletonList(locker));
+
+        assertThrows(TicketInvalidException.class,() -> lockerRobotManager.pickUp(new Ticket(TypeEnum.MEDIUM)));
+    }
+
 
 }
