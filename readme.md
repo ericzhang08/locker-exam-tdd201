@@ -68,3 +68,81 @@ Robot或者Locker取包。
 7. 小樱代理用户取完包后，会回收票据吗？
 
     小樱会回收，但她自己取包的时候难免也有犯糊涂的时候。
+
+
+### tasking
+
+####存包
+##### Locker
+given 一个小包 and 一个未满的小型locker when 存包  then 成功存包到locker 并返回小型包ticket 
+
+given 一个小包 and 一个已满的小型locker when 存包  then 存包失败 返回包已满信息
+
+given 一个有效小包票据 when 取包 then 取包成功
+
+given 一个不存在的小包票据 when取包 then 返回无效票据错误
+
+given 一个非小包票据    when取包 then 返回票据类型错误
+
+##### primaryLockerRobot：
+
+given primaryLockerRobot管理非中型Locker when 配置 then 报 不支持该类型locker错误
+
+given一个 中型包 and 一个primaryLockerRobot管理两个未满的中型Locker  when 存包 then 成功存包到第一个locker，并返回中型包ticket。
+
+given一个 中型包 and 一个primaryLockerRobot管理两个中型Locker第一个已满第二个未满  when 存包 then 成功存包到第二个locker， 并返回中型包ticket。
+
+given一个 中型包 and 一个primaryLockerRobot管理两个中型locker都已满 when 存包 then 报空间已满错误。
+
+given 一个有效中包票据 when 取包 then 取包成功
+
+given 一个不存在的中包票据 when取包 then 返回无效票据错误
+
+given 一个非中包票据    when取包 then 返回票据类型错误
+
+##### SuperLockerRobot：
+given 一个大型包 and 一个SuperLockerRobot 管理两个未满的大型locker，第一个空置率小于第二个  when存包 then 成功存包到第二个Locker，并返回大型包ticket。
+
+given 一个大型包 and 一个SuperLockerRobot 管理两个大型locker，第一个未满，第二个满  when存包 then 成功存包到第一个Locker，并返回大型包ticket。
+
+given 一个大型包 and 一个SuperLockerRobot 管理两个大型locker都已满，when存包 then 报空间已满错误。
+_____
+given primaryLockerRobot管理非大型Locker when 配置 then 报 不支持该类型locker错误
+_______
+given 一个有效大包票据 when 取包 then 取包成功
+
+given 一个不存在的大包票据 when取包 then 返回无效票据错误
+
+given 一个非大包票据    when取包 then 返回票据类型错误
+
+##### LockerRobotManager：
+given 一个小型包 and  LockerRobotManager管理的小型Locker未满 when 存包 then 成功存包在locker中 并返回小型包票据
+
+given 一个小型包 and LockerRobotManager管理的primaryLockerRobot未满 when 存包 then 成功存包在primaryLockerRobot中 并返回中型包票据
+
+given 一个大型包 and LockerRobotManager管理的SuperLockerRobot未满 when 存包 then 成功存包在SuperLockerRobot中 并返回大型包票据
+
+given 一个小型包 and  LockerRobotManager管理的小型Locker已满 when 存包 then 报空间已满错误
+
+given 一个中型包型包 and  LockerRobotManager管理的primaryLockerRobot已满 when 存包 then 报空间已满错误
+
+given 一个大型包 and LockerRobotManager管理的SuperLockerRobot已满 when 存包 then 报空间已满错误
+
+given LockerRobotManager配置一个非小型locker， when 配置 then 报不支持该类型locker错误
+
+given LockerRobotManager的primaryLockerRobot配置一个非中型locker， when 配置 then 报不支持该类型locker错误
+
+given LockerRobotManager的superLockerRobot配置一个非大型locker， when 配置 then 报不支持该类型locker错误
+
+given 一个有效小包票据 when 取包 then 取包成功
+
+given 一个有效中包票据 when 取包 then 取包成功
+
+given 一个有效大包票据 when 取包 then 取包成功
+
+given 一个不存在的小包票据 when取包 then 返回无效票据错误
+
+given 一个不存在的中包票据 when取包 then 返回无效票据错误
+
+given 一个不存在的大包票据 when取包 then 返回无效票据错误
+given 一个非大包票据    when取包 then 返回票据类型错误
