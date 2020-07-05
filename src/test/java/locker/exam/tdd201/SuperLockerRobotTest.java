@@ -57,4 +57,10 @@ public class SuperLockerRobotTest {
         Ticket ticket = superLockerRobot.store(bagExpected);
         assertEquals(bagExpected, superLockerRobot.pickUp(ticket));
     }
+
+    @Test
+    void should_throw_InvalidTicketException_when_pick_up_given_an_invalid_large_ticket() {
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
+        assertThrows(TicketInvalidException.class,() -> superLockerRobot.pickUp(new Ticket(TypeEnum.LARGE)));
+    }
 }
