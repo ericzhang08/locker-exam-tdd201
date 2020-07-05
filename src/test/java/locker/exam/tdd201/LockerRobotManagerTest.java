@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LockerRobotManagerTest {
     @Test
@@ -46,5 +45,17 @@ public class LockerRobotManagerTest {
         Ticket ticket = lockerRobotManager.store(bag);
         assertTrue(ticket.isType(TypeEnum.LARGE));
         assertEquals(bag, superLockerRobot.pickUp(ticket));
+    }
+
+    @Test
+    void should_throw_noAvailableCapacityException_when_store_given_a_full_small_locker() {
+        Locker locker = new Locker(1, TypeEnum.SMALL);
+        locker.store(new Bag(TypeEnum.SMALL));
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
+        LockerRobotManager lockerRobotManager = new LockerRobotManager(Collections.singletonList(primaryLockerRobot),Collections.singletonList(superLockerRobot),
+                Collections.singletonList(locker));
+
+        assertThrows(NoAvailableCapacityException.class, ()->lockerRobotManager.store(new Bag(TypeEnum.SMALL)) );
     }
 }
