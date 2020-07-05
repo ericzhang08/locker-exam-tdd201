@@ -19,4 +19,8 @@ public class Locker {
         bagRepository.put(t, bag);
         return t;
     }
+
+    public Bag pickUp(Ticket ticket) {
+        return bagRepository.get(ticket);
+    }
 }

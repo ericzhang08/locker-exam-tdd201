@@ -19,7 +19,14 @@ public class LockerTest {
         smallLocker.store(new Bag());
 
         assertThrows(LockerIsFullException.class, () -> smallLocker.store(new Bag()));
+    }
 
-
+    @Test
+    void should_get_bag_when_pick_up_given_a_valid_small_ticket() {
+        Locker smallLocker = new Locker(1, "S");
+        Bag bagExpected = new Bag();
+        Ticket ticket = smallLocker.store(bagExpected);
+        Bag bag = smallLocker.pickUp(ticket);
+        assertEquals(bagExpected, bag);
     }
 }
