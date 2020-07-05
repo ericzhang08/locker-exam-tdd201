@@ -18,6 +18,9 @@ public class PrimaryLockerRobot {
     }
 
     public Bag pickUp(Ticket ticket) {
+        if (!ticket.isType(TypeEnum.MEDIUM)) {
+            throw new TicketTypeException();
+        }
         return lockerRepository.stream().filter(locker -> locker.hasTicket(ticket)).findFirst().orElseThrow(TicketInvalidException::new).pickUp(ticket);
     }
 }

@@ -66,4 +66,10 @@ public class PrimaryLockerRobotTest {
         PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
         assertThrows(TicketInvalidException.class,() -> primaryLockerRobot.pickUp(new Ticket(TypeEnum.MEDIUM)));
     }
+
+    @Test
+    void should_throw_TicketTypeException_when_pick_up_given_an_error_type_ticket() {
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
+        assertThrows(TicketTypeException.class,() -> primaryLockerRobot.pickUp(new Ticket(TypeEnum.SMALL)));
+    }
 }
