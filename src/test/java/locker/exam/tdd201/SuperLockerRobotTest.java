@@ -63,4 +63,10 @@ public class SuperLockerRobotTest {
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
         assertThrows(TicketInvalidException.class,() -> superLockerRobot.pickUp(new Ticket(TypeEnum.LARGE)));
     }
+
+    @Test
+    void should_throw_TicketTypeException_when_pick_up_given_an_error_type_ticket() {
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
+        assertThrows(TicketTypeException.class,() -> superLockerRobot.pickUp(new Ticket(TypeEnum.SMALL)));
+    }
 }
