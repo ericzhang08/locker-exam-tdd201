@@ -27,4 +27,8 @@ public class   LockerRobotManager {
         }
         return superLockerRobots.get(0).store(bag);
     }
+
+    public Bag pickUp(Ticket ticket) {
+        return lockers.get(0).pickUp(ticket);
+    }
 }

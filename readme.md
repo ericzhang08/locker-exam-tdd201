@@ -141,8 +141,6 @@ given 一个不存在的小包票据 when取包 then 返回无效票据错误
 given 一个不存在的中包票据 when取包 then 返回无效票据错误
 
 given 一个不存在的大包票据 when取包 then 返回无效票据错误
-given 一个非大包票据    when取包 then 返回票据类型错误
-
 
 
 ### 问题
