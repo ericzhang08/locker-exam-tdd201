@@ -21,6 +21,9 @@ public class Locker {
     }
 
     public Bag pickUp(Ticket ticket) {
+        if (!ticket.getType().equals(type)) {
+            throw new TicketTypeException();
+        }
         if (!bagRepository.containsKey(ticket)) {
             throw new TicketInvalidException();
         }
