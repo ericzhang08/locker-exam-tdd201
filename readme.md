@@ -1,28 +1,19 @@
-##Locker Robot
-tdd 201结营考试题目
-###目标：
+## Locker Robot
+2020 年六月tdd 201结营考试最后编程题。
+### 目标：
 我们要开发一个新的Locker Robot存取包系统，其中Locker/Robot/Manager可以帮助顾客存取包。
 
-###背景：
-随着互联网智能时代的快速发展，华顺超市也准备将之前的人
-工存取包变得更加智能化，可以让小樱(前台服务员) 一个人就可以
-搞定大量的存取包服务。所以特聘请你来为他们开发这个
-LockerRobot存取包系统。
-###需求如下：
-华顺超市准备购买三种型号的储物柜，分别为S，M，L（S < M < L）。当顾客来
-存包的时候只需要将包交给小樱，之后的一系列存包会由小樱来完成。
+### 背景：
+随着互联网智能时代的快速发展，华顺超市也准备将之前的人工存取包变得更加智能化，可以让小樱(前台服务员) 一个人就可以搞定大量的存取包服务。所以特聘请你来为他们开发这个LockerRobot存取包系统。
 
-小樱在存包之前先会拿到包裹的尺寸标签，根据不同的尺寸标签决定是直接
-存入Locker还是找对应Robot存包。当包裹尺寸为S时，小樱会直接存入S号的
-Locker中；当包裹尺寸为M时，找PrimaryLockerRobot存包；当包裹尺寸为L时
-，找SuperLockerRobot存包。存包成功后小樱会将票据交给顾客。存包的时候
-，小樱从不犯糊涂，她一定能找对目标。
+### 需求如下：
+华顺超市准备购买三种型号的储物柜，分别为S，M，L（S < M < L）。当顾客来存包的时候只需要将包交给小樱，之后的一系列存包会由小樱来完成。
 
-当普通顾客拿着票据来取包的时候，只要把票据交给小樱，小樱会找对应的
-Robot或者Locker取包。
+小樱在存包之前先会拿到包裹的尺寸标签，根据不同的尺寸标签决定是直接存入Locker还是找对应Robot存包。当包裹尺寸为S时，小樱会直接存入S号的Locker中；当包裹尺寸为M时，找PrimaryLockerRobot存包；当包裹尺寸为L时，找SuperLockerRobot存包。存包成功后小樱会将票据交给顾客。存包的时候，小樱从不犯糊涂，她一定能找对目标。
 
-当VIP顾客来存取包时，可以直接通过VIP通道找LockerRobotManager提供专
-门的存取包服务。
+当普通顾客拿着票据来取包的时候，只要把票据交给小樱，小樱会找对应的Robot或者Locker取包。
+
+当VIP顾客来存取包时，可以直接通过VIP通道找LockerRobotManager提供专门的存取包服务。
 
 ### 业务规则
 1. Locker可以存包取包
@@ -31,10 +22,8 @@ Robot或者Locker取包。
 
 3. SuperLockerRobot 将包存入空置率最大的Locker，它只管理L号Locker，暂且不用考虑管理其它型号的Locker。
 
-
 4. 目前由于业务量比较小，LockerRobotManager只管理一个Locker（S号）、一个PrimaryLockerRobot（管理一个Locker）和SuperLockerRobot（管
 理一个Locker），但也不排除后期随着业务增长，LockerRobotManager会管理更多的Locker或者Robot
-
 
 5. LockerRobotManager可以委派Robot存包取包，也可以自己存包取包，委派顺序没有要求。
 
@@ -72,8 +61,7 @@ Robot或者Locker取包。
 
 ### tasking
 
-####存包
-##### Locker
+#### Locker
 given 一个小包 and 一个未满的小型locker when 存包  then 成功存包到locker 并返回小型包ticket 
 
 given 一个小包 and 一个已满的小型locker when 存包  then 存包失败 返回包已满信息
@@ -84,13 +72,13 @@ given 一个不存在的小包票据 when取包 then 返回无效票据错误
 
 given 一个非小包票据    when取包 then 返回票据类型错误
 
-##### primaryLockerRobot：
+#### primaryLockerRobot：
 
 given primaryLockerRobot管理非中型Locker when 配置 then 报 不支持该类型locker错误
 
 given一个 中型包 and 一个primaryLockerRobot管理两个未满的中型Locker  when 存包 then 成功存包到第一个locker，并返回中型包ticket。
 
-[given一个 中型包 and 一个primaryLockerRobot管理两个中型Locker第一个已满第二个未满  when 存包 then 成功存包到第二个locker， 并返回中型包ticket。]()
+given一个 中型包 and 一个primaryLockerRobot管理两个中型Locker第一个已满第二个未满  when 存包 then 成功存包到第二个locker， 并返回中型包ticket.
 
 given一个 中型包 and 一个primaryLockerRobot管理两个中型locker都已满 when 存包 then 报空间已满错误。
 
@@ -100,7 +88,7 @@ given 一个不存在的中包票据 when取包 then 返回无效票据错误
 
 given 一个非中包票据    when取包 then 返回票据类型错误
 
-##### SuperLockerRobot：
+#### SuperLockerRobot：
 given 一个大型包 and 一个SuperLockerRobot 管理两个未满的大型locker，第一个空置率小于第二个  when存包 then 成功存包到第二个Locker，并返回大型包ticket。
 
 given 一个大型包 and 一个SuperLockerRobot 管理两个大型locker，空置率相同  when存包 then 成功存包到第一个Locker，并返回大型包ticket。
@@ -115,7 +103,7 @@ given 一个不存在的大包票据 when取包 then 返回无效票据错误
 
 given 一个非大包票据    when取包 then 返回票据类型错误
 
-##### LockerRobotManager：
+#### LockerRobotManager：
 given 一个小型包 and  LockerRobotManager管理的小型Locker未满 when 存包 then 成功存包在locker中 并返回小型包票据
 
 given 一个小型包 and LockerRobotManager管理的primaryLockerRobot未满 when 存包 then 成功存包在primaryLockerRobot中 并返回中型包票据
