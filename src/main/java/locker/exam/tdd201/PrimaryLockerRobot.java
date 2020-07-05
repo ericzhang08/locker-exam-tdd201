@@ -18,6 +18,6 @@ public class PrimaryLockerRobot {
     }
 
     public Bag pickUp(Ticket ticket) {
-        return lockerRepository.stream().filter(locker -> locker.hasTicket(ticket)).findFirst().get().pickUp(ticket);
+        return lockerRepository.stream().filter(locker -> locker.hasTicket(ticket)).findFirst().orElseThrow(TicketInvalidException::new).pickUp(ticket);
     }
 }

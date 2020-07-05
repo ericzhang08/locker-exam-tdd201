@@ -54,10 +54,16 @@ public class PrimaryLockerRobotTest {
     }
 
     @Test
-    void should_get_bag_when_pick_up_given_an_valid_medium_ticket() {
+    void should_get_bag_when_pick_up_given_a_valid_medium_ticket() {
         PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
         Bag bagExpected = new Bag();
         Ticket ticket = primaryLockerRobot.store(bagExpected);
         assertEquals(bagExpected, primaryLockerRobot.pickUp(ticket));
+    }
+
+    @Test
+    void should_throw_InvalidTicketException_when_pick_up_given_an_invalid_medium_ticket() {
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
+        assertThrows(TicketInvalidException.class,() -> primaryLockerRobot.pickUp(new Ticket(TypeEnum.MEDIUM)));
     }
 }
