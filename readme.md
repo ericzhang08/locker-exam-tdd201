@@ -118,7 +118,7 @@ given 一个非大包票据    when取包 then 返回票据类型错误
 ##### LockerRobotManager：
 given 一个小型包 and  LockerRobotManager管理的小型Locker未满 when 存包 then 成功存包在locker中 并返回小型包票据
 
-[given 一个小型包 and LockerRobotManager管理的primaryLockerRobot未满 when 存包 then 成功存包在primaryLockerRobot中 并返回中型包票据]()
+given 一个小型包 and LockerRobotManager管理的primaryLockerRobot未满 when 存包 then 成功存包在primaryLockerRobot中 并返回中型包票据
 
 given 一个大型包 and LockerRobotManager管理的SuperLockerRobot未满 when 存包 then 成功存包在SuperLockerRobot中 并返回大型包票据
 
