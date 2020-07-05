@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PrimaryLockerRobotTest {
     @Test
@@ -39,5 +38,18 @@ public class PrimaryLockerRobotTest {
         Bag bagExpected = new Bag();
         Ticket ticket = primaryLockerRobot.store(bagExpected);
         assertEquals(bagExpected, secondLocker.pickUp(ticket));
+    }
+
+    @Test
+    void should_throw_LockerIsFull_when_store_given_two_medium_type_locker_and_both_are_full() {
+        Locker firstLocker = new Locker(1, TypeEnum.MEDIUM);
+        Locker secondLocker = new Locker(1, TypeEnum.MEDIUM);
+        firstLocker.store(new Bag());
+        secondLocker.store(new Bag());
+
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Arrays.asList(firstLocker,
+                secondLocker));
+
+        assertThrows(LockerIsFullException.class,() -> primaryLockerRobot.store(new Bag())) ;
     }
 }
