@@ -14,10 +14,10 @@ public class   LockerRobotManager {
     }
 
     public Ticket store(Bag bag) {
-        if (bag.getType().equals(TypeEnum.SMALL)) {
+        if (bag.isType(TypeEnum.SMALL)) {
             return lockers.get(0).store(bag);
         }
-        if(bag.getType().equals(TypeEnum.MEDIUM)){
+        if(bag.isType(TypeEnum.MEDIUM)){
             return primaryLockerRobots.get(0).store(bag);
         }
         return superLockerRobots.get(0).store(bag);
