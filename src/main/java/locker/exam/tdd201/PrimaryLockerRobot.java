@@ -16,4 +16,8 @@ public class PrimaryLockerRobot {
     public Ticket store(Bag bag) {
         return lockerRepository.stream().filter(Locker::hasAvailableCapacity).findFirst().orElseThrow(NoAvailableCapacityException::new).store(bag);
     }
+
+    public Bag pickUp(Ticket ticket) {
+        return lockerRepository.stream().filter(locker -> locker.hasTicket(ticket)).findFirst().get().pickUp(ticket);
+    }
 }

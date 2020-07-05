@@ -37,4 +37,8 @@ public class Locker {
     public boolean hasAvailableCapacity() {
         return bagRepository.size() < size;
     }
+
+    public boolean hasTicket(Ticket ticket) {
+        return bagRepository.containsKey(ticket);
+    }
 }

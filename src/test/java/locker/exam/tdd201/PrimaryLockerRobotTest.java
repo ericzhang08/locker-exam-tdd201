@@ -50,6 +50,14 @@ public class PrimaryLockerRobotTest {
         PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Arrays.asList(firstLocker,
                 secondLocker));
 
-        assertThrows(NoAvailableCapacityException.class,() -> primaryLockerRobot.store(new Bag())) ;
+        assertThrows(NoAvailableCapacityException.class, () -> primaryLockerRobot.store(new Bag()));
+    }
+
+    @Test
+    void should_get_bag_when_pick_up_given_an_valid_medium_ticket() {
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
+        Bag bagExpected = new Bag();
+        Ticket ticket = primaryLockerRobot.store(bagExpected);
+        assertEquals(bagExpected, primaryLockerRobot.pickUp(ticket));
     }
 }
