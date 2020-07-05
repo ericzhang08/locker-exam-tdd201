@@ -106,4 +106,17 @@ public class LockerRobotManagerTest {
         assertEquals(bag, lockerRobotManager.pickUp(ticket));
     }
 
+    @Test
+    void should_get_bag_when_pick_up_given_a_valid_medium_ticket() {
+        Locker locker = new Locker(1, TypeEnum.SMALL);
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.MEDIUM)));
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
+        LockerRobotManager lockerRobotManager = new LockerRobotManager(Collections.singletonList(primaryLockerRobot),Collections.singletonList(superLockerRobot),
+                Collections.singletonList(locker));
+        Bag bag = new Bag(TypeEnum.MEDIUM);
+        Ticket ticket = lockerRobotManager.store(bag);
+
+        assertEquals(bag, lockerRobotManager.pickUp(ticket));
+    }
+
 }

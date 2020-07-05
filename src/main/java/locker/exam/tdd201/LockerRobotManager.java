@@ -29,6 +29,10 @@ public class   LockerRobotManager {
     }
 
     public Bag pickUp(Ticket ticket) {
-        return lockers.get(0).pickUp(ticket);
+        if (ticket.isType(TypeEnum.SMALL)) {
+            return lockers.get(0).pickUp(ticket);
+        }
+        return primaryLockerRobots.get(0).pickUp(ticket);
+
     }
 }
