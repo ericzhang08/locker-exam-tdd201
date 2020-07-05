@@ -29,4 +29,8 @@ public class Locker {
         }
         return bagRepository.get(ticket);
     }
+
+    public boolean isType(TypeEnum medium) {
+        return this.type.equals(medium);
+    }
 }
