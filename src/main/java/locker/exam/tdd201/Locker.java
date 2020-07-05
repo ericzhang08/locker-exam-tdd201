@@ -15,13 +15,13 @@ public class Locker {
         if (bagRepository.size() >= size) {
             throw new LockerIsFullException();
         }
-        Ticket t = new Ticket(TypeEnum.SMALL);
-        bagRepository.put(t, bag);
-        return t;
+        Ticket ticket = new Ticket(TypeEnum.SMALL);
+        bagRepository.put(ticket, bag);
+        return ticket;
     }
 
     public Bag pickUp(Ticket ticket) {
-        if (!ticket.getType().equals(type)) {
+        if (!ticket.isType(type)) {
             throw new TicketTypeException();
         }
         if (!bagRepository.containsKey(ticket)) {

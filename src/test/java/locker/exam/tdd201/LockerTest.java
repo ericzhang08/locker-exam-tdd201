@@ -2,15 +2,14 @@ package locker.exam.tdd201;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LockerTest {
     @Test
     void should_return_small_bag_ticket_when_store_given_a_not_full_small_bag() {
         Locker smallLocker = new Locker(1 , TypeEnum.SMALL);
         Ticket ticket = smallLocker.store(new Bag());
-        assertEquals(TypeEnum.SMALL,ticket.getType());
+        assertTrue(ticket.isType(TypeEnum.SMALL));
     }
 
     @Test
