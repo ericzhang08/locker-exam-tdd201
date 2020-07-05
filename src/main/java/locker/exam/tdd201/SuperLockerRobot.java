@@ -18,4 +18,8 @@ public class SuperLockerRobot {
     public Ticket store(Bag bag) {
         return lockerRepository.stream().max(Comparator.comparingDouble(locker -> locker.emptyRatio())).get().store(bag);
     }
+
+    public Bag pickUp(Ticket ticket) {
+        return lockerRepository.stream().filter(locker -> locker.hasTicket(ticket)).findFirst().get().pickUp(ticket);
+    }
 }

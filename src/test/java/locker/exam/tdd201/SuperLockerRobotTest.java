@@ -49,4 +49,12 @@ public class SuperLockerRobotTest {
                 secondLocker));
         assertThrows(NoAvailableCapacityException.class, () -> superLockerRobot.store(new Bag()));
     }
+
+    @Test
+    void should_get_bag_when_pick_up_given_a_valid_large_ticket() {
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
+        Bag bagExpected = new Bag();
+        Ticket ticket = superLockerRobot.store(bagExpected);
+        assertEquals(bagExpected, superLockerRobot.pickUp(ticket));
+    }
 }
