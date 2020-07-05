@@ -26,4 +26,15 @@ public class SuperLockerRobotTest {
         Ticket ticket = superLockerRobot.store(bagExpected);
         assertEquals(bagExpected, secondLocker.pickUp(ticket));
     }
+
+    @Test
+    void should_return_ticket_and_save_bag_in_the_first_most_empty_ratio_locker_when_store_given_two_large_type_locker_have_the_same_empty_ratio() {
+        Locker firstLocker = new Locker(1, TypeEnum.LARGE);
+        Locker secondLocker = new Locker(1, TypeEnum.LARGE);
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(firstLocker,
+                secondLocker));
+        Bag bagExpected = new Bag();
+        Ticket ticket = superLockerRobot.store(bagExpected);
+        assertEquals(bagExpected, firstLocker.pickUp(ticket));
+    }
 }

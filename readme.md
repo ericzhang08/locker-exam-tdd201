@@ -103,7 +103,7 @@ given 一个非中包票据    when取包 then 返回票据类型错误
 ##### SuperLockerRobot：
 given 一个大型包 and 一个SuperLockerRobot 管理两个未满的大型locker，第一个空置率小于第二个  when存包 then 成功存包到第二个Locker，并返回大型包ticket。
 
-given 一个大型包 and 一个SuperLockerRobot 管理两个大型locker，第一个未满，第二个满  when存包 then 成功存包到第一个Locker，并返回大型包ticket。
+given 一个大型包 and 一个SuperLockerRobot 管理两个大型locker，空置率相同  when存包 then 成功存包到第一个Locker，并返回大型包ticket。
 
 given 一个大型包 and 一个SuperLockerRobot 管理两个大型locker都已满，when存包 then 报空间已满错误。
 _____
