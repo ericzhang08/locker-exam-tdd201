@@ -19,10 +19,10 @@ public class SuperLockerRobotTest {
     void should_return_ticket_and_save_bag_in_the_most_empty_ratio_locker_when_store_given_two_large_type_locker_is_not_full() {
         Locker firstLocker = new Locker(2, TypeEnum.LARGE);
         Locker secondLocker = new Locker(3, TypeEnum.LARGE);
-        firstLocker.store(new Bag());
+        firstLocker.store(new Bag(TypeEnum.LARGE));
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(firstLocker,
                 secondLocker));
-        Bag bagExpected = new Bag();
+        Bag bagExpected = new Bag(TypeEnum.LARGE);
         Ticket ticket = superLockerRobot.store(bagExpected);
         assertEquals(bagExpected, secondLocker.pickUp(ticket));
     }
@@ -33,7 +33,7 @@ public class SuperLockerRobotTest {
         Locker secondLocker = new Locker(1, TypeEnum.LARGE);
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(firstLocker,
                 secondLocker));
-        Bag bagExpected = new Bag();
+        Bag bagExpected = new Bag(TypeEnum.LARGE);
         Ticket ticket = superLockerRobot.store(bagExpected);
         assertEquals(bagExpected, firstLocker.pickUp(ticket));
     }
@@ -42,18 +42,18 @@ public class SuperLockerRobotTest {
     void should_throw_NoAvailableCapacityException_when_store_given_two_large_type_locker_and_both_are_full() {
         Locker firstLocker = new Locker(1, TypeEnum.LARGE);
         Locker secondLocker = new Locker(1, TypeEnum.LARGE);
-        firstLocker.store(new Bag());
-        secondLocker.store(new Bag());
+        firstLocker.store(new Bag(TypeEnum.LARGE));
+        secondLocker.store(new Bag(TypeEnum.LARGE));
 
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(firstLocker,
                 secondLocker));
-        assertThrows(NoAvailableCapacityException.class, () -> superLockerRobot.store(new Bag()));
+        assertThrows(NoAvailableCapacityException.class, () -> superLockerRobot.store(new Bag(TypeEnum.LARGE)));
     }
 
     @Test
     void should_get_bag_when_pick_up_given_a_valid_large_ticket() {
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Collections.singletonList(new Locker(1, TypeEnum.LARGE)));
-        Bag bagExpected = new Bag();
+        Bag bagExpected = new Bag(TypeEnum.LARGE);
         Ticket ticket = superLockerRobot.store(bagExpected);
         assertEquals(bagExpected, superLockerRobot.pickUp(ticket));
     }
