@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LockerTest {
     @Test
     void should_return_small_bag_ticket_when_store_given_a_not_full_small_bag() {
-        Locker smallLocker = new Locker(1 , "S");
+        Locker smallLocker = new Locker(1 , TypeEnum.SMALL);
         Ticket ticket = smallLocker.store(new Bag());
-        assertEquals("S",ticket.getType());
+        assertEquals(TypeEnum.SMALL,ticket.getType());
     }
 
     @Test
     void should_throw_LockerIsFullException_when_store_given_a_full_small_locker() {
-        Locker smallLocker = new Locker(1, "S");
+        Locker smallLocker = new Locker(1, TypeEnum.SMALL);
         smallLocker.store(new Bag());
 
         assertThrows(LockerIsFullException.class, () -> smallLocker.store(new Bag()));
@@ -23,7 +23,7 @@ public class LockerTest {
 
     @Test
     void should_get_bag_when_pick_up_given_a_valid_small_ticket() {
-        Locker smallLocker = new Locker(1, "S");
+        Locker smallLocker = new Locker(1, TypeEnum.SMALL);
         Bag bagExpected = new Bag();
         Ticket ticket = smallLocker.store(bagExpected);
         Bag bag = smallLocker.pickUp(ticket);
@@ -32,13 +32,13 @@ public class LockerTest {
 
     @Test
     void should_throw_TicketInvalidException_when_pick_up_given_a_not_exist_small_ticket_and_a_small_locker() {
-        Locker locker = new Locker(1, "S");
-        assertThrows(TicketInvalidException.class, () -> locker.pickUp(new Ticket("S")));
+        Locker locker = new Locker(1, TypeEnum.SMALL);
+        assertThrows(TicketInvalidException.class, () -> locker.pickUp(new Ticket(TypeEnum.SMALL)));
     }
 
     @Test
     void should_throw_TicketTypeException_when_pick_up_given_a_medium_type_ticket_and_a_small_locker() {
-        Locker locker = new Locker(1, "S");
-        assertThrows(TicketTypeException.class, () -> locker.pickUp(new Ticket("M")));
+        Locker locker = new Locker(1, TypeEnum.SMALL);
+        assertThrows(TicketTypeException.class, () -> locker.pickUp(new Ticket(TypeEnum.MEDIUM)));
     }
 }

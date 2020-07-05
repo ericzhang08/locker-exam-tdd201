@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 public class Locker {
     private int size;
-    private String type;
+    private TypeEnum type;
     private HashMap<Ticket, Bag> bagRepository = new HashMap<>();
-    public Locker(int size, String type) {
+    public Locker(int size, TypeEnum type) {
         this.size = size;
         this.type = type;
     }
@@ -15,7 +15,7 @@ public class Locker {
         if (bagRepository.size() >= size) {
             throw new LockerIsFullException();
         }
-        Ticket t = new Ticket("S");
+        Ticket t = new Ticket(TypeEnum.SMALL);
         bagRepository.put(t, bag);
         return t;
     }

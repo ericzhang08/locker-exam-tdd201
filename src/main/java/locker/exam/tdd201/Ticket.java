@@ -1,12 +1,12 @@
 package locker.exam.tdd201;
 
 public class Ticket {
-    private String type;
+    private TypeEnum type;
 
-    public Ticket(String type) {
+    public Ticket(TypeEnum type) {
         this.type = type;
     }
-    public String getType() {
+    public TypeEnum getType() {
         return type;
     }
 }
