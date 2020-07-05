@@ -32,7 +32,10 @@ public class   LockerRobotManager {
         if (ticket.isType(TypeEnum.SMALL)) {
             return lockers.get(0).pickUp(ticket);
         }
-        return primaryLockerRobots.get(0).pickUp(ticket);
+        if (ticket.isType(TypeEnum.MEDIUM)) {
+            return primaryLockerRobots.get(0).pickUp(ticket);
+        }
+        return superLockerRobots.get(0).pickUp(ticket);
 
     }
 }
