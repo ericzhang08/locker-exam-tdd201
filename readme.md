@@ -130,10 +130,6 @@ given 一个大型包 and LockerRobotManager管理的SuperLockerRobot已满 when
 
 given LockerRobotManager配置一个非小型locker， when 配置 then 报不支持该类型locker错误
 
-given LockerRobotManager的primaryLockerRobot配置一个非中型locker， when 配置 then 报不支持该类型locker错误
-
-given LockerRobotManager的superLockerRobot配置一个非大型locker， when 配置 then 报不支持该类型locker错误
-
 given 一个有效小包票据 when 取包 then 取包成功
 
 given 一个有效中包票据 when 取包 then 取包成功

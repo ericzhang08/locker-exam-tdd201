@@ -8,6 +8,11 @@ public class   LockerRobotManager {
     private List<Locker> lockers;
 
     public LockerRobotManager(List<PrimaryLockerRobot> primaryLockerRobots,List<SuperLockerRobot> superLockerRobots, List<Locker> lockers) {
+        for (Locker locker : lockers) {
+            if (!locker.isType(TypeEnum.SMALL)) {
+                throw new LockerTypeException();
+            }
+        }
         this.primaryLockerRobots = primaryLockerRobots;
         this.superLockerRobots = superLockerRobots;
         this.lockers = lockers;
