@@ -13,11 +13,11 @@ public class LockerTest {
     }
 
     @Test
-    void should_throw_LockerIsFullException_when_store_given_a_full_small_locker() {
+    void should_throw_NoAvailableCapacityException_when_store_given_a_full_small_locker() {
         Locker smallLocker = new Locker(1, TypeEnum.SMALL);
         smallLocker.store(new Bag());
 
-        assertThrows(LockerIsFullException.class, () -> smallLocker.store(new Bag()));
+        assertThrows(NoAvailableCapacityException.class, () -> smallLocker.store(new Bag()));
     }
 
     @Test

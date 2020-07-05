@@ -13,7 +13,7 @@ public class Locker {
 
     public Ticket store(Bag bag) {
         if (bagRepository.size() >= size) {
-            throw new LockerIsFullException();
+            throw new NoAvailableCapacityException();
         }
         Ticket ticket = new Ticket(this.type);
         bagRepository.put(ticket, bag);

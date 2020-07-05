@@ -41,7 +41,7 @@ public class PrimaryLockerRobotTest {
     }
 
     @Test
-    void should_throw_LockerIsFull_when_store_given_two_medium_type_locker_and_both_are_full() {
+    void should_throw_NoAvailableCapacityException_when_store_given_two_medium_type_locker_and_both_are_full() {
         Locker firstLocker = new Locker(1, TypeEnum.MEDIUM);
         Locker secondLocker = new Locker(1, TypeEnum.MEDIUM);
         firstLocker.store(new Bag());
@@ -50,6 +50,6 @@ public class PrimaryLockerRobotTest {
         PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Arrays.asList(firstLocker,
                 secondLocker));
 
-        assertThrows(LockerIsFullException.class,() -> primaryLockerRobot.store(new Bag())) ;
+        assertThrows(NoAvailableCapacityException.class,() -> primaryLockerRobot.store(new Bag())) ;
     }
 }
